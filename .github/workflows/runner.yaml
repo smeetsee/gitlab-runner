@@ -1,6 +1,11 @@
 name: GitLab Runner
 on:
   workflow_dispatch:
+    inputs:
+      max-builds:
+        description: "Maximum number of builds to run"
+        required: false
+        default: "1"
 
 permissions: {}
 
@@ -21,5 +26,6 @@ jobs:
           DOCKER_VOLUMES: /certs/client:/certs/client
           DOCKER_PRIVILEGED: true
           RUNNER_ENV: DOCKER_TLS_CERTDIR=/certs
+          MAX_BUILDS: ${{ github.event.inputs.max-builds }}
         run: |
-          gitlab-runner run-single --max-builds 1 > /dev/null 2>&1
+          gitlab-runner run-single --max-builds ${MAX_BUILDS} > /dev/null 2>&1

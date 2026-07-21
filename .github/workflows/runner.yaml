@@ -9,7 +9,7 @@ jobs:
     name: GitLab Runner
     runs-on: ubuntu-latest
     container:
-      image: gitlab/gitlab-runner:19.2.0
+      image: gitlab/gitlab-runner:v19.2.0
       options: --privileged
     steps:
       - name: Run single

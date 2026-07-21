@@ -18,5 +18,7 @@ jobs:
           CI_SERVER_TOKEN: ${{ secrets.GITLAB_RUNNER_TOKEN }}
           RUNNER_EXECUTOR: docker
           DOCKER_IMAGE: alpine
+          DOCKER_VOLUMES: /certs/client:/certs/client
+          RUNNER_ENV: DOCKER_TLS_CERTDIR=/certs
         run: |
           gitlab-runner run-single --max-builds 1 > /dev/null 2>&1

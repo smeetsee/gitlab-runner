@@ -19,4 +19,4 @@ jobs:
           RUNNER_EXECUTOR: docker
           DOCKER_IMAGE: alpine
         run: |
-          gitlab-runner run-single > /dev/null 2>&1
+          gitlab-runner run-single --max-builds 1 > /dev/null 2>&1

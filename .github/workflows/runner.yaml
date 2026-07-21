@@ -1,0 +1,22 @@
+name: GitLab Runner
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  gitlab-runner:
+    name: GitLab Runner
+    runs-on: ubuntu-latest
+    container:
+      image: gitlab/gitlab-runner:19.2.0
+      options: --privileged
+    steps:
+      - name: Run single
+        env:
+          CI_SERVER_URL: ${{ secrets.GITLAB_RUNNER_URL }}
+          CI_SERVER_TOKEN: ${{ secrets.GITLAB_RUNNER_TOKEN }}
+          RUNNER_EXECUTOR: docker
+          DOCKER_IMAGE: alpine
+        run: |
+          gitlab-runner run-single

@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       max-builds:
+        type: number
         description: "Maximum number of builds to run"
         required: false
         default: "1"

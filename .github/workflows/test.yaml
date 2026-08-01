@@ -1,5 +1,8 @@
 name: Test
 on:
+  push:
+    branches:
+      - main
   pull_request:
     types:
       - opened
@@ -12,6 +15,7 @@ jobs:
   renovate-config-validator:
     # This job is based on https://github.com/renovatebot/github-action/blob/700f3b59b9d0fc6dffce45b564ee1f58869973b1/.github/workflows/build.yml#L132-L148
     name: Validate Renovate config
+    if: github.event.pull_request
     runs-on: ubuntu-latest
     permissions:
       contents: read
